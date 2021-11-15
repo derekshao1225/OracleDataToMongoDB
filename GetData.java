@@ -102,7 +102,7 @@ public class GetData{
             // fill user home town city info
     	    ResultSet hometownInfo = stmt2.executeQuery(
     	            "SELECT C.CITY_NAME, C.STATE_NAME, C.COUNTRY_NAME\n" +
-                            "FROM" + cityTableName + "C, "+ hometownCityTableName + " H\n" +
+                            "FROM " + cityTableName + " C, "+ hometownCityTableName + " H\n" +
                             "WHERE C.CITY_ID = H.HOMETOWN_CITY_ID AND H.USER_ID = " + uid
             );
             JSONObject hometownJSON = new JSONObject();
@@ -115,7 +115,7 @@ public class GetData{
             // fill user current city info
             ResultSet currentInfo = stmt3.executeQuery(
                     "SELECT C.CITY_NAME, C.STATE_NAME, C.COUNTRY_NAME\n" +
-                            "FROM" + cityTableName + "C, "+ currentCityTableName + " H\n" +
+                            "FROM " + cityTableName + " C, "+ currentCityTableName + " H\n" +
                             "WHERE C.CITY_ID = H.CURRENT_CITY_ID AND H.USER_ID = " + uid
             );
             JSONObject currentJSON = new JSONObject();
