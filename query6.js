@@ -3,7 +3,15 @@
 // Return a decimal variable as the average user friend count of all users
 // in the users document.
 
-function find_average_friendcount(dbname){
+function find_average_friendcount(dbname) {
   db = db.getSiblingDB(dbname)
-  // TODO: return a decimal number of average friend count
+  let friend_cnt = 0;
+  let user_cnt = 0;
+  db.users.find({}, { user_id: 1, friends: 1, _id: 0 }).forEach(
+    (item) => {
+      user_cnt += 1;
+      friend_cnt += item.friends.length;
+    }
+  )
+  return friend_cnt / user_cnt;
 }
