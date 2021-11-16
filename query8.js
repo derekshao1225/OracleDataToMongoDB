@@ -9,10 +9,10 @@ var city_average_friendcount_mapper = function () {
 
 var city_average_friendcount_reducer = function (key, values) {
     let user_cnt = 0;
-    let friends_arr_length = 0;
+    let friends_arr = 0;
     for (let i = 0; i < values.length; ++i) {
         user_cnt += values[i]["user_cnt"];
-        friends_arr_length += values[i]["friends_arr"].length;
+        friends_arr = friends_arr.concat(values[i]["friends_arr"]);
     }
     return { "user_cnt": user_cnt, "friends_arr": friends_arr };
 };
@@ -21,6 +21,6 @@ var city_average_friendcount_finalizer = function (key, reduceVal) {
     // We've implemented a simple forwarding finalize function. This implementation
     // is naive: it just forwards the reduceVal to the output collection.
     // Feel free to change it if needed.
-    var ret = reduceVal.friends_arr / reduceVal.user_cnt;
+    var ret = reduceVal.friends_arr.length / reduceVal.user_cnt;
     return ret;
 }
