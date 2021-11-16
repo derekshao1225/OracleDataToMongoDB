@@ -11,8 +11,5 @@
 function cities_table(dbname) {
     db = db.getSiblingDB(dbname);
     // TODO: implemente cities collection here
-
-
-    // Returns nothing. Instead, it creates a collection inside the datbase.
-
+    db.users.aggregate([{$group:{ _id:"$current.city", users:{ $push: "$user_id"}}}, {$out: "cities"}])
 }
